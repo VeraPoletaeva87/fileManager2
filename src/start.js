@@ -2,11 +2,11 @@ import os from 'os';
 import readline from 'readline';
 import { Welcome, userName } from './functions/welcome.js';
 import { printList } from './functions/ls.js';
-import { readFile } from './functions/readfile.js';
-import { createFile } from './functions/createFile.js';
-import { renameFile } from './functions/renameFile.js';
-import { copyFile } from './functions/copyFile.js';
-import { deleteFile } from './functions/deleteFile.js';
+import { readFile } from './functions/fs/readfile.js';
+import { createFile } from './functions/fs/createFile.js';
+import { renameFile } from './functions/fs/renameFile.js';
+import { copyFile } from './functions/fs/copyFile.js';
+import { deleteFile } from './functions/fs/deleteFile.js';
 import { moveFile } from './functions/moveFile.js';
 import { osData } from './functions/os.js';
 import { calcHash } from './functions/hash.js';
@@ -31,22 +31,7 @@ readLine.on('close', () => {
 
 readLine.on('line', async (command) => {
 const args = [];
-let quotes = false;
-let current = '';
-
-for (let i = 0; i < command.length; i++) {
-  const char = command[i];
-  if (char === ' ' && !quotes) {
-    if (current.trim() !== '' && current !== '"') {
-      args.push(current.trim());
-    }
-    current = '';
-  } else if (char === '"') {
-    quotes = !quotes;
-  } else {
-    current = current + char;
-  }
-}
+let current = command;
 
 if (current.trim() !== '' && current !== '"') {
   args.push(current.trim());

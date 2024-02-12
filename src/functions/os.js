@@ -4,7 +4,7 @@ const osData = async (arg) => {
   try {
     switch (arg) {
       case '--EOL':
-        console.log('default system End-Of-Line:' + ' ' + JSON.stringify(os.EOL) + ' ' + '\n');
+        console.log('default system End-Of-Line:' + ' ' + JSON.stringify(os.EOL));
         console.log('You are currently in ' + process.cwd() + '\n');
         break;
 
